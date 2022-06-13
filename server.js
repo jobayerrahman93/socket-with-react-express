@@ -17,6 +17,12 @@ res.send(path.resolve(__dirname,'client','build','index.html'))
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+
+  socket.emit('msg','This is a message from server')
+
+  socket.on('disconnect',()=>{
+    console.log('a user disconnect')
+  })
 });
 
 server.listen(5000, () => {
