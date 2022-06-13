@@ -4,10 +4,15 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+const path = require('path');
+
+
+
+app.use(express.static('client/build'))
+
 
 app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/index.html');
-res.end('this is backend')
+res.send(path.resolve(__dirname,'client','build','index.html'))
 });
 
 io.on('connection', (socket) => {
